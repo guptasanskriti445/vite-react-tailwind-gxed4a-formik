@@ -188,7 +188,7 @@ const Product = () => {
         </div>
 
         {/* Multi-Select Fuel Types */}
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label htmlFor="fuelTypes" className="block text-gray-700">
             Fuel Types
           </label>
@@ -220,7 +220,7 @@ const Product = () => {
           {formik.errors.fuelTypes && formik.touched.fuelTypes && (
             <div className="text-red-500 text-sm mt-1">{formik.errors.fuelTypes}</div>
           )}
-        </div>
+        </div> */}
 
         {/* Date Picker */}
         <div className="mb-4">
