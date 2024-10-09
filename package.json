@@ -13,6 +13,7 @@
     "@mui/material": "^6.1.2",
     "@mui/x-date-pickers": "^7.19.0",
     "date-fns": "^4.1.0",
+    "flowbite": "^2.5.2",
     "formik": "^2.4.6",
     "react": "^18.0.0",
     "react-datepicker": "^7.4.0",

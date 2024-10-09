@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { TextField, Button } from '@mui/material';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useDropzone } from 'react-dropzone';
 import { WiCloudUp } from "react-icons/wi";
+import 'flowbite/dist/flowbite.css';
 
-const NotificationForm = () => {
+const NotificationFlowbite = () => {
   const [file, setFile] = useState(null);
 
   // Initial values for Formik
@@ -65,20 +65,11 @@ const NotificationForm = () => {
               <label htmlFor="title" className="block text-gray-700 mb-1">Title:</label>
               <Field name="title">
                 {({ field }) => (
-                  <TextField
+                  <input
                     {...field}
-                    variant="outlined"
-                    fullWidth
-                    sx={{
-                      '& .MuiOutlinedInput-root': {
-                        '& input': {
-                          height: '20px', // Set the height of the input field
-                          padding: '6.5px 16px', // Adjust padding
-                        },
-                      },
-                    }}
-                    className="rounded-md" // Adding rounded corners
-                    placeholder='Enter title'
+                    type="text"
+                    className="block w-full border border-gray-300 rounded-md p-2 focus:ring focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Enter title"
                   />
                 )}
               </Field>
@@ -90,22 +81,11 @@ const NotificationForm = () => {
               <label htmlFor="description" className="block text-gray-700 mb-1">Description:</label>
               <Field name="description">
                 {({ field }) => (
-                  <TextField
+                  <textarea
                     {...field}
+                    className="block w-full border border-gray-300 rounded-md p-2 focus:ring focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Enter description"
-                    variant="outlined"
-                    fullWidth
-                    multiline
                     rows={3}
-                    sx={{
-                      '& .MuiOutlinedInput-root': {
-                        '& textarea': {
-                          height: '16px', // Set the height of the textarea
-                          padding: '0.5px 0px', // Match padding with the title field
-                        },
-                      },
-                    }}
-                    className="rounded-md" // Adding rounded corners
                   />
                 )}
               </Field>
@@ -141,21 +121,19 @@ const NotificationForm = () => {
 
             {/* Submit and Clear Buttons - Right Aligned */}
             <div className="flex justify-end space-x-2 mt-6">
-              <Button
+              <button
                 type="button"
-                variant="outlined" // Using outlined style
-                color="primary"     // Primary color outline
+                className="bg-transparent border border-blue-700 text-blue-700 py-2 px-4 rounded hover:bg-blue-700 hover:text-white"
                 onClick={() => handleClear(resetForm)}
               >
                 Clear
-              </Button>
-              <Button
+              </button>
+              <button
                 type="submit"
-                variant="contained"
-                className='bg-blue-700'
+                className="bg-blue-700 text-white py-2 px-4 rounded hover:bg-blue-800"
               >
                 Send
-              </Button>
+              </button>
             </div>
           </Form>
         )}
@@ -164,4 +142,4 @@ const NotificationForm = () => {
   );
 };
 
-export default NotificationForm;
+export default NotificationFlowbite;

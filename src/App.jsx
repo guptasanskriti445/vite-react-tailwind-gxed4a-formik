@@ -5,6 +5,7 @@ import Details from './components/Details';
 import Product from './components/Product';
 import ProductForm from './components/ProductForm';
 import NotificationForm from './components/NotificationForm';
+import NotificationFlowbite from './components/NotificationFlowbite';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -15,7 +16,8 @@ function App() {
    {/* <Product /> */}
    {/* <ProductForm /> */}
    <div className='bg-slate-200'>
-   <NotificationForm />
+   {/* <NotificationForm /> */}
+   <NotificationFlowbite />
    </div>
  
    </>
