@@ -58,20 +58,20 @@ const NotificationFlowbite = () => {
   });
 
   return (
-    <div className='bg-slate-200'>
-      <div className="max-w-4xl mx-auto pb-3 bg-white shadow-md rounded-lg border border-gray-300 flex flex-col md:flex-row">
+    <div className='bg-white'>
+      <div className="max-w-4xl mx-auto bg-white shadow-xl rounded-lg border flex flex-col md:flex-row">
         {/* Left Side - Image */}
-        <div className="w-full md:w-1/2 p-4">
+        <div className="w-full md:w-1/2 p-0"> {/* Set padding to 0 */}
           <img
             src="https://via.placeholder.com/400" // Replace with your image URL
             alt="Placeholder"
-            className="w-full h-auto rounded-lg"
+            className="w-full h-full object-cover rounded-l-lg" // Use h-full to cover full div
           />
         </div>
 
         {/* Right Side - Form */}
         <div className="w-full md:w-1/2 p-4">
-          <h1 className="text-2xl font-bold mb-4 text-center bg-blue-600 text-white p-4 rounded-lg">Notification Form</h1>
+          <h1 className="text-3xl font-bold mb-4 text-left text-blue-600 p-4 rounded-lg">Notification Form</h1>
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
@@ -125,8 +125,7 @@ const NotificationFlowbite = () => {
                       ) : (
                         <>
                           <p className="text-gray-500">Drag & drop some files here</p>
-                          <p className="text-gray-500">or</p>
-                          <p className="text-gray-500">click to select files</p>
+                          <p className="text-gray-500">or click to select files</p>
                         </>
                       )}
                     </div>
@@ -143,7 +142,7 @@ const NotificationFlowbite = () => {
                   {/* Clear Button */}
                   <button
                     type="button"
-                    className="bg-transparent border border-blue-700 text-blue-700 py-2 px-3 rounded-full font-medium"
+                    className="bg-transparent border border-blue-700 text-blue-700 py-2 px-5 rounded-xl shadow-md font-medium" // Added px-2 and shadow
                     onClick={() => handleClear(resetForm)}
                   >
                     Clear
@@ -152,7 +151,7 @@ const NotificationFlowbite = () => {
                   {/* Send Button */}
                   <button
                     type="submit"
-                    className="bg-blue-700 text-white py-2 px-3 rounded-full hover:bg-blue-800 font-medium"
+                    className="bg-blue-700 text-white py-2 px-5 rounded-xl shadow-md hover:bg-blue-800 font-medium" // Added px-2 and shadow
                   >
                     Send
                   </button>
