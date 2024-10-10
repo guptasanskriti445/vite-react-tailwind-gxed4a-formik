@@ -3,7 +3,6 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useDropzone } from 'react-dropzone';
 import { WiCloudUp } from "react-icons/wi";
-import 'flowbite/dist/flowbite.css';
 
 const NotificationFlowbite = () => {
   const [file, setFile] = useState(null);
@@ -21,7 +20,7 @@ const NotificationFlowbite = () => {
   });
 
   // Handle form submission
-  const onSubmit = (values) => {
+  const onSubmit = (values, { resetForm }) => {
     const formData = new FormData();
     formData.append('title', values.title);
     formData.append('description', values.description);
@@ -29,14 +28,16 @@ const NotificationFlowbite = () => {
       formData.append('file', file);
     }
 
-    // Simulate form submission
-    console.log('Form submitted:', formData);
-  };
+    // Simulate form submission (you can replace this with actual submission logic)
+    console.log('Form submitted:', {
+      title: values.title,
+      description: values.description,
+      file: file ? file.name : 'No file selected',
+    });
 
-  // Handle clear form
-  const handleClear = (resetForm) => {
-    setFile(null);
+    // Reset the form after submission
     resetForm();
+    setFile(null); // Clear the selected file
   };
 
   // Handle file drop and selection
@@ -56,7 +57,7 @@ const NotificationFlowbite = () => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={onSubmit}
+        onSubmit={onSubmit} // Formik's onSubmit method to handle form submission
       >
         {({ resetForm }) => (
           <Form className='px-6'>
@@ -121,16 +122,19 @@ const NotificationFlowbite = () => {
 
             {/* Submit and Clear Buttons - Right Aligned */}
             <div className="flex justify-end space-x-2 mt-6">
+              {/* Clear Button */}
               <button
                 type="button"
-                className="bg-transparent border border-blue-700 text-blue-700 py-2 px-4 rounded hover:bg-blue-700 hover:text-white"
+                className="bg-transparent border border-blue-700 text-blue-700 py-2 px-4 rounded-full hover:bg-blue-700 hover:text-white"
                 onClick={() => handleClear(resetForm)}
               >
                 Clear
               </button>
+
+              {/* Send Button */}
               <button
                 type="submit"
-                className="bg-blue-700 text-white py-2 px-4 rounded hover:bg-blue-800"
+                className="bg-blue-700 text-white py-2 px-4 rounded-full hover:bg-blue-800"
               >
                 Send
               </button>
