@@ -45,6 +45,12 @@ const NotificationFlowbite = () => {
     setFile(acceptedFiles[0]);
   };
 
+  // Clear the form
+  const handleClear = (resetForm) => {
+    resetForm();
+    setFile(null);
+  };
+
   // Configure dropzone
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -57,7 +63,7 @@ const NotificationFlowbite = () => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={onSubmit} // Formik's onSubmit method to handle form submission
+        onSubmit={onSubmit}
       >
         {({ resetForm }) => (
           <Form className='px-6'>
@@ -125,7 +131,7 @@ const NotificationFlowbite = () => {
               {/* Clear Button */}
               <button
                 type="button"
-                className="bg-transparent border border-blue-700 text-blue-700 py-2 px-4 rounded-full hover:bg-blue-700 hover:text-white"
+                className="bg-transparent border border-blue-700 text-blue-700 py-2 px-4 rounded-full"
                 onClick={() => handleClear(resetForm)}
               >
                 Clear
