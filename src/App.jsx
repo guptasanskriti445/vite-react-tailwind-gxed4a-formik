@@ -15,7 +15,7 @@ function App() {
    {/* <Details /> */}
    {/* <Product /> */}
    {/* <ProductForm /> */}
-   <div className='bg-slate-200'>
+   <div >
    {/* <NotificationForm /> */}
    <NotificationFlowbite />
    </div>

@@ -58,96 +58,110 @@ const NotificationFlowbite = () => {
   });
 
   return (
-    <div className="max-w-lg mx-auto pb-3 bg-white shadow-md rounded-lg border border-gray-300">
-      <h1 className="text-2xl font-bold mb-4 text-center bg-blue-600 text-white p-4 rounded-t-lg">Notification Form</h1>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={onSubmit}
-      >
-        {({ resetForm }) => (
-          <Form className='px-6'>
-            {/* Title Field */}
-            <div className="mb-4">
-              <label htmlFor="title" className="block text-gray-700 mb-1">Title:</label>
-              <Field name="title">
-                {({ field }) => (
-                  <input
-                    {...field}
-                    type="text"
-                    className="block w-full border border-gray-300 rounded-md p-2 focus:ring focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter title"
-                  />
-                )}
-              </Field>
-              <ErrorMessage name="title" component="div" className="text-red-500 text-sm mt-1" />
-            </div>
+    <div className='bg-slate-200'>
+      <div className="max-w-4xl mx-auto pb-3 bg-white shadow-md rounded-lg border border-gray-300 flex flex-col md:flex-row">
+        {/* Left Side - Image */}
+        <div className="w-full md:w-1/2 p-4">
+          <img
+            src="https://via.placeholder.com/400" // Replace with your image URL
+            alt="Placeholder"
+            className="w-full h-auto rounded-lg"
+          />
+        </div>
 
-            {/* Description Field */}
-            <div className="mb-4">
-              <label htmlFor="description" className="block text-gray-700 mb-1">Description:</label>
-              <Field name="description">
-                {({ field }) => (
-                  <textarea
-                    {...field}
-                    className="block w-full border border-gray-300 rounded-md p-2 focus:ring focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter description"
-                    rows={3}
-                  />
-                )}
-              </Field>
-              <ErrorMessage name="description" component="div" className="text-red-500 text-sm mt-1" />
-            </div>
+        {/* Right Side - Form */}
+        <div className="w-full md:w-1/2 p-4">
+          <h1 className="text-2xl font-bold mb-4 text-center bg-blue-600 text-white p-4 rounded-lg">Notification Form</h1>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={onSubmit}
+          >
+            {({ resetForm }) => (
+              <Form className='px-6'>
+                {/* Title Field */}
+                <div className="mb-4">
+                  <label htmlFor="title" className="block text-gray-700 mb-1 font-medium">Title:</label>
+                  <Field name="title">
+                    {({ field }) => (
+                      <input
+                        {...field}
+                        type="text"
+                        className="block w-full border border-gray-300 rounded-md p-2 focus:ring focus:ring-blue-500 focus:border-blue-500"
+                        placeholder="Enter title"
+                      />
+                    )}
+                  </Field>
+                  <ErrorMessage name="title" component="div" className="text-red-500 text-sm mt-1" />
+                </div>
 
-            {/* File Upload Field with Drag and Drop */}
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-1">Upload Image</label>
-              <div
-                {...getRootProps({ className: 'border-dashed border-2 border-gray-300 rounded-md p-4 text-center' })}
-              >
-                <input {...getInputProps()} />
-                <div className="flex flex-col items-center">
-                  <WiCloudUp className="text-4xl mb-2" />
-                  {isDragActive ? (
-                    <p className="text-gray-500">Drop the files here...</p>
-                  ) : (
-                    <>
-                      <p className="text-gray-500">Drag & drop some files here</p>
-                      <p className="text-gray-500">or</p>
-                      <p className="text-gray-500">click to select files</p>
-                    </>
+                {/* Description Field */}
+                <div className="mb-4">
+                  <label htmlFor="description" className="block text-gray-700 mb-1 font-medium">Description:</label>
+                  <Field name="description">
+                    {({ field }) => (
+                      <textarea
+                        {...field}
+                        className="block w-full border border-gray-300 rounded-md p-2 focus:ring focus:ring-blue-500 focus:border-blue-500"
+                        placeholder="Enter description"
+                        rows={3}
+                      />
+                    )}
+                  </Field>
+                  <ErrorMessage name="description" component="div" className="text-red-500 text-sm mt-1" />
+                </div>
+
+                {/* File Upload Field with Drag and Drop */}
+                <div className="mb-4">
+                  <label className="block text-gray-700 mb-1 font-medium">Upload Image</label>
+                  <div
+                    {...getRootProps({ className: 'border-dashed border-2 border-gray-300 rounded-md p-4 text-center' })}
+                  >
+                    <input {...getInputProps()} />
+                    <div className="flex flex-col items-center">
+                      <WiCloudUp className="text-4xl mb-2" />
+                      {isDragActive ? (
+                        <p className="text-gray-500">Drop the files here...</p>
+                      ) : (
+                        <>
+                          <p className="text-gray-500">Drag & drop some files here</p>
+                          <p className="text-gray-500">or</p>
+                          <p className="text-gray-500">click to select files</p>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                  {file && (
+                    <div className="mt-2 text-gray-600">
+                      Selected File: {file.name}
+                    </div>
                   )}
                 </div>
-              </div>
-              {file && (
-                <div className="mt-2 text-gray-600">
-                  Selected File: {file.name}
+
+                {/* Submit and Clear Buttons - Right Aligned */}
+                <div className="flex justify-end space-x-2 mt-6">
+                  {/* Clear Button */}
+                  <button
+                    type="button"
+                    className="bg-transparent border border-blue-700 text-blue-700 py-2 px-3 rounded-full font-medium"
+                    onClick={() => handleClear(resetForm)}
+                  >
+                    Clear
+                  </button>
+
+                  {/* Send Button */}
+                  <button
+                    type="submit"
+                    className="bg-blue-700 text-white py-2 px-3 rounded-full hover:bg-blue-800 font-medium"
+                  >
+                    Send
+                  </button>
                 </div>
-              )}
-            </div>
-
-            {/* Submit and Clear Buttons - Right Aligned */}
-            <div className="flex justify-end space-x-2 mt-6">
-              {/* Clear Button */}
-              <button
-                type="button"
-                className="bg-transparent border border-blue-700 text-blue-700 py-2 px-4 rounded-full"
-                onClick={() => handleClear(resetForm)}
-              >
-                Clear
-              </button>
-
-              {/* Send Button */}
-              <button
-                type="submit"
-                className="bg-blue-700 text-white py-2 px-4 rounded-full hover:bg-blue-800"
-              >
-                Send
-              </button>
-            </div>
-          </Form>
-        )}
-      </Formik>
+              </Form>
+            )}
+          </Formik>
+        </div>
+      </div>
     </div>
   );
 };
